@@ -23,6 +23,11 @@ ___
       4. [Graph Databases](#214-graph-databases)
 
    2. [Join-Operaties in Niet-Relationele Databases](#22-join-operaties-in-niet-relationele-databases)
+       	1. [Join-Operaties in MongoDB](#221-join-operaties-in-mongodb)
+       	2. [Join-Operaties in Redis](#222-join-operaties-in-redis)
+       	3. [Join-Operaties in Apache Cassandra](#223-join-operaties-in-apache-cassandra)
+       	4. [Join-Operaties in Neo4j](#224-join-operaties-in-neo4j)
+   3. [Conclusie](#23-conclusie)
 
 
 ## 1 Inleiding
@@ -61,7 +66,7 @@ Er zijn vier hoofdtypen niet-relationele databases: documentgeoriënteerd, key-v
 
 Documentgeoriënteerde databases zijn een type niet-relationele database dat gegevens opslaat in documenten in plaats van tabellen, zoals relationele databases. Elk document bevat alle informatie die nodig is om een specifiek object te beschrijven, inclusief de attributen en waarden, en kan worden opgeslagen in verschillende formaten zoals JSON of BSON.
 
-Een voordeel van documentgeoriënteerde databases is dat ze flexibeler zijn dan relationele databases. In plaats van een strikte structuur te hebben, kunnen documentgeoriënteerde databases werken met semi-gestructureerde gegevens, zoals JSON of XML. Hierdoor kunnen documentgeoriënteerde databases eenvoudig worden aangepast aan wijzigingen in de gegevensstructuren, waardoor ze zeer geschikt zijn voor toepassingen waarbij de structuur van de gegevens kan veranderen of onvoorspelbaar is.
+Een voordeel van documentgeoriënteerde databases is dat ze flexibeler zijn dan relationele databases. In plaats van een strikte structuur te hebben, kunnen documentgeoriënteerde databases werken met semi-gestructureerde gegevens, zoals JSON of XML. Hierdoor kunnen documentgeoriënteerde databases eenvoudig worden aangepast aan wijzigingen in de gegevensstructuren, waardoor ze zeer geschikt zijn voor toepassingen waarbij de structuur van de gegevens kan veranderen of onvoorspelbaar is. Naast de flexibiliteit van documentgeoriënteerde databases, bieden ze ook voordelen op het gebied van snelheid. Doordat documentgeoriënteerde  databases gebruik maken van documenten die informatie bevatten die is gerelateerd aan elkaar in één document, kunnen grote hoeveelheden informatie tegelijkertijd worden opgehaald en verwerkt.
 
 Een nadeel van documentgeoriënteerde databases is dat ze minder geschikt zijn voor het uitvoeren van complexe query's. Doordat de  gegevens niet onderling zijn gekoppeld en in afzonderlijke documenten zijn opgeslagen, kan het moeilijker zijn om bepaalde gegevens op te halen dan in relationele databases.
 
@@ -304,7 +309,7 @@ Er zijn dus verschillende type niet-relationele databases; elk type gaat op een 
 Een samenvatting van de voor- en nadelen van de verschillende niet-relationele database types:
 
 - Documentgeoriënteerde databases:
-  - Voordelen: veranderingen in gegevensstructuren zijn makkelijker aan te passen
+  - Voordelen: veranderingen in gegevensstructuren zijn makkelijker aan te passen en grote datasets ophalen gaat vlotter
   - Nadelen: minder geschikt voor complexe queries
 - Key-value databases:
   - Voordelen: gebruiksgemak, snelheid en schaalbaarheid.
@@ -316,7 +321,13 @@ Een samenvatting van de voor- en nadelen van de verschillende niet-relationele d
   - Voordelen: geschikt voor het opslaan van complexe relaties en het uitvoeren van complexe queries.
   - Nadelen: minder geschikt voor transacties en minder efficiënt bij het opslaan van grote hoeveelheden data.
 
+De Spotitube applicatie heeft behoefte aan een schaalbare database die in staat is om grote hoeveelheden data tegelijk op te halen. Belangrijk is dat de database flexibel is, zodat het gemakkelijk is om nieuwe velden toe te voegen aan de opgeslagen tracks zonder dat er veel nullable velden worden gecreëerd. Door te kiezen voor een dergelijke database kan de Spotitube applicatie snel en efficiënt werken met grote hoeveelheden data en tegelijkertijd gemakkelijk worden uitgebreid en onderhouden.
 
+Hoewel alle niet-relationele database types hun eigen voordelen hebben, lijkt de documentgeoriënteerde database het meest geschikt voor deze specifieke toepassing. De populairste documentgeoriënteerde is MongoDB; deze is gratis en open-source, wat het een goede optie maakt voor onze applicatie.
+
+Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie bevatten die is gerelateerd aan elkaar in één document, wat de efficiëntie en snelheid van het ophalen van grote datasets kan verbeteren. Bovendien is MongoDB flexibel en schaalbaar, waardoor het gemakkelijk kan worden aangepast aan veranderingen in gegevensstructuren en kan meegroeien met de groei van de applicatie. Daarnaast kunnen er gemakkelijk relaties tussen documenten worden gelegd door middel van MongoDB's  lookup-functionaliteit. Deze functionaliteit maakt het mogelijk om gegevens uit meerdere collecties samen te voegen en te combineren op basis van een gemeenschappelijk veld, vergelijkbaar met het uitvoeren van een join in een relationele database.
+
+Concluderend gaan we onderzoeken of MongoDB, als niet-relationele database, de Spotitube applicatie net zo goed of beter kan laten  functioneren dan de huidige relationele database.
 
 ## Bronnen
 
