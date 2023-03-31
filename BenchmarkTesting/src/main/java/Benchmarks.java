@@ -10,7 +10,7 @@ public class Benchmarks {
 
     private static Connection connection;
     private static MongoDatabase database;
-    private static final int ITERATIONS = 1000;
+    private static final int ITERATIONS = 10000;
 
     public Benchmarks() {
 
@@ -18,31 +18,10 @@ public class Benchmarks {
 
     public void run() {
         createConnections();
-        long[] getAllPlaylistsDurations = testGetAllPlaylists();
-        long[] getAllTracksDurations = testGetAllTracks();
-        long[] getTracksInPlaylistByIdDurations = getTracksInPlaylistById();
-        long[] getCalculateTrackLengthDurations = calculateTrackLength();
-
-        long[][] durations = new long[][]{
-                getAllPlaylistsDurations,
-                getAllTracksDurations,
-                getTracksInPlaylistByIdDurations,
-                getCalculateTrackLengthDurations
-        };
-
-        long[] totalDurations = getTotalDuration(durations);
-        float averageMongoDuration = (float)totalDurations[0] / 4;
-        float averageMySQLDuration = (float)totalDurations[1] / 4;
-
-        if (averageMongoDuration < averageMySQLDuration) {
-            float percentage = 100 - ((averageMongoDuration / averageMySQLDuration) * 100);
-            percentage = Math.round(percentage * 10) / 10f;
-            System.out.println("MongoDB is on average " + percentage + "% faster than MySQL");
-        } else {
-            float percentage = 100 - ((averageMySQLDuration / averageMongoDuration) * 100);
-            percentage = Math.round(percentage * 10) / 10f;
-            System.out.println("MySQL is on average " + percentage + "% faster than MongoDB");
-        }
+        testGetAllPlaylists();
+        testGetAllTracks();
+        getTracksInPlaylistById();
+        calculateTrackLength();
     }
 
     public void createConnections() {
@@ -54,7 +33,7 @@ public class Benchmarks {
         }
     }
 
-    public long[] testGetAllPlaylists() {
+    public void testGetAllPlaylists() {
         long[] mysqlDurations = new long[ITERATIONS];
         long[] mongoDurations = new long[ITERATIONS];
         for (int i = 0; i < mysqlDurations.length; i++) {
@@ -69,11 +48,9 @@ public class Benchmarks {
         long mongoTotal = calculateTotal(mongoDurations);
 
         printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
-
-        return getDurationArray(mongoTotal, mysqlTotal);
     }
 
-    public long[] testGetAllTracks() {
+    public void testGetAllTracks() {
         long[] mysqlDurations = new long[ITERATIONS];
         long[] mongoDurations = new long[ITERATIONS];
         for (int i = 0; i < mysqlDurations.length; i++) {
@@ -88,11 +65,9 @@ public class Benchmarks {
         long mongoTotal = calculateTotal(mongoDurations);
 
         printResults("getAllTracks", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
-
-        return getDurationArray(mongoTotal, mysqlTotal);
     }
 
-    public long[] getTracksInPlaylistById() {
+    public void getTracksInPlaylistById() {
         long[] mysqlDurations = new long[ITERATIONS];
         long[] mongoDurations = new long[ITERATIONS];
         for (int i = 0; i < mysqlDurations.length; i++) {
@@ -107,11 +82,9 @@ public class Benchmarks {
         long mongoTotal = calculateTotal(mongoDurations);
 
         printResults("getTracksInPlaylistById", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
-
-        return getDurationArray(mongoTotal, mysqlTotal);
     }
 
-    public long[] calculateTrackLength() {
+    public void calculateTrackLength() {
         long[] mysqlDurations = new long[ITERATIONS];
         long[] mongoDurations = new long[ITERATIONS];
         for (int i = 0; i < mysqlDurations.length; i++) {
@@ -126,8 +99,6 @@ public class Benchmarks {
         long mongoTotal = calculateTotal(mongoDurations);
 
         printResults("calculateTrackLengthInSeconds", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
-
-        return getDurationArray(mongoTotal, mysqlTotal);
     }
 
     private long calculateAverage(long[] durations) {
@@ -145,26 +116,6 @@ public class Benchmarks {
             durationTotal += durations[i];
         }
         return durationTotal;
-    }
-
-    private long[] getDurationArray(long mongoDbDuration, long mySqlDuration) {
-        long[] durations = new long[2];
-        durations[0] = mongoDbDuration;
-        durations[1] = mySqlDuration;
-        return durations;
-    }
-
-    private long[] getTotalDuration(long[][] durations) {
-        long mongoDbTotalDuration = 0;
-        long mySqlTotalDuration = 0;
-        for (int i = 0; i < durations.length; i++) {
-            mongoDbTotalDuration += durations[i][0];
-            mySqlTotalDuration += durations[i][1];
-        }
-        long[] totalDurations = new long[2];
-        totalDurations[0] = mongoDbTotalDuration;
-        totalDurations[1] = mySqlTotalDuration;
-        return totalDurations;
     }
 
     private void printResults(String text, long mongoDbAvgResults, long mySqlAvgResults, long mongoDbTotalResults, long mySqlTotalResults) {
