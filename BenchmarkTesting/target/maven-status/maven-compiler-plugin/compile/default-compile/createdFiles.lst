@@ -1,1 +1,3 @@
-org\example\Main.class
+Main.class
+seed\MongoDBSeed.class
+seed\MySQLSeed.class
