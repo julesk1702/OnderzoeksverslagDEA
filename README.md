@@ -1,9 +1,9 @@
 # DEA Onderzoeksverslag
-Jules Koster en Suzanne Coenen
+Jules Koster (1653865) en Suzanne Coenen (1666029)
 Bart van der Wal
 ITA-OOSE-A-f
 Versie 1.0
-30 maart 2023
+31 maart 2023
 
 ___
 
@@ -28,6 +28,9 @@ ___
        	3. [Join-Operaties in Apache Cassandra](#223-join-operaties-in-apache-cassandra)
        	4. [Join-Operaties in Neo4j](#224-join-operaties-in-neo4j)
    3. [Conclusie](#23-conclusie)
+3. [Onderzoeksresultaten](#3-onderzoeksresultaten)
+4. [Conclusie](#4-conclusie)
+5. [Bronnen](#5-bronnen)
 
 
 ## 1 Inleiding
@@ -435,3 +438,4 @@ MongoDB. (2023, Januari 1). What Is a Non-Relational Database? Opgeroepen op Maa
 
 ICT Research Methods. (2022, Juni 10). Methods. Opgeroepen op Maart 31, 2023, van ictresearchmethods: https://ictresearchmethods.nl/Methods
 
+OnderwijsOnline (z.d.-b). https://han.onderwijsonline.nl/
