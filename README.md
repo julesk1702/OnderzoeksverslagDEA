@@ -141,7 +141,7 @@ Ons doel is om de gegevens van beide collecties te combineren om een lijst te kr
 
 Dit kunnen we doen door een $lookup-aggregatie operatie te gebruiken in MongoDB. Hier is een query als voorbeeld:
 
-```json
+```markdown
 db.bestellingen.aggregate([
   {
     $lookup:
@@ -186,19 +186,19 @@ Bijvoorbeeld, laten we zeggen dat we twee datasets hebben in Redis, "bestellinge
 
 Voor de "bestellingen" dataset:
 
-```json
+```sql
 ZADD bestellingen 123 '{"bestelling_id": 1, "klant_id": 123, "product_naam": "VoorbeeldA", "hoeveelheid": 2, "prijs": 10}' 
 ```
 
 Voor de "klanten" dataset:
 
-```json
+```sql
 ZADD klanten 123 '{"klant_id": 123, "naam": "Emma Jong", "adres": "Mauritskade 57, 1092 AD Amsterdam"}' 
 ```
 
 Om een join tussen de twee datasets na te bootsen, kunnen we de "ZINTERSTORE" opdracht gebruiken om een nieuwe gesorteerde set te maken die alleen de objecten bevat waarin de "klant_id" zowel in "bestellingen" als in "klanten" voorkomt. De opdrachtsyntax is als volgt:
 
-```json
+```sql
 ZINTERSTORE output 2 bestellingen klanten WEIGHTS 1 0
 ```
 
@@ -206,13 +206,13 @@ Met behulp van Redis wordt een nieuwe gesorteerde set genaamd "output"  gecreëe
 
 Om de inhoud van de 'output' set te kunnen zien gebruik je het volgende commando:
 
-```json
+```sql
 ZRANGE output 0 -1 WITHSCORES
 ```
 
 De resulterende output set zal de volgende elementen hebben:
 
-```json
+```sql
 1. "{"bestelling_id":1,"klant_id":123,"product_naam":"VoorbeeldA","hoeveelheid":2,"prijs":10}"
 2. "123"
 ```
