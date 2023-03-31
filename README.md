@@ -1,8 +1,12 @@
 # DEA Onderzoeksverslag
 Jules Koster (1653865) en Suzanne Coenen (1666029)
+
 Bart van der Wal
+
 ITA-OOSE-A-f
+
 Versie 1.0
+
 31 maart 2023
 
 ___
