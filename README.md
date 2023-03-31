@@ -40,6 +40,8 @@ Met dit onderzoek hopen we inzicht te verschaffen om de keuze of je nu wel of ni
 
 ### 1.1 Onderwerp
 
+Het onderwerp van dit onderzoek is: “Het vervangen van een relationele SQL-database door een niet relationele (NoSQL) database.” Dit onderwerp richt zich op het verkennen van de mogelijkheden en uitdagingen van het vervangen van het al bestaande SQL database door een niet relationele database. Het onderzoek zal zich onder andere richten op de verschillen tussen SQL en NoSQL databases, wat de voor- en nadelen zijn van het gebruik van een NoSQL database ten opzichte van een SQL database, en de prestaties en schaalbaarheid van een NoSQL database in vergelijking met SQL databases. Door deze aspecten te onderzoeken, kan worden gekeken of het vervangen van een QL-database door een NoSQL-database gunstig is voor de Spotitube applicatie.
+
 ### 1.2 Onderzoeksvraag
 
 Onze hoofdvraag voor dit onderzoeksverslag luidt alsvolgt: “Wat zijn de voor- en nadelen van het vervangen van de relationele database door een niet relationele database?”. 
@@ -52,9 +54,27 @@ Aan het eind van dit onderzoek hopen wij te beschikken over een nauwkeurig beeld
 
 ### 1.3 Deelvragen
 
+Om tot een conclusie te komen op de hoofdvraag hebben we een drietal deelvragen bedacht om het beantwoorden van de hoofdvraag makkelijker te maken. De drie hoofdvragen luiden als volgt:
+
+1.	Wat zijn de belangrijkste verschillen tussen de verschillende en populairste soorten niet-relationele databases en welke is het meest geschikt voor de specifieke behoeften en vereisten van de applicatie?
+
+2.	Hoe kan men vergelijkbare resultaten behalen in een NoSQL-database, zoals die verkregen worden via een join-operatie in een SQL-database? 
+
+3.	Welke criteria moeten worden vervuld om een niet-relationele database te kunnen inzetten ter vervanging van een relationele database in een applicatie?
+
+4.	Wat is het verschil in snelheid tussen het ophalen van gegevens uit een niet-relationele database en een relationele database? 
+
+
 ### 1.4 Onderzoeksmethoden
 
-## 2Theoretisch Kader en Literatuuronderzoek
+Wij maken binnen dit onderzoek gebruik van de volgende onderzoeksmethoden:
+
+Voor de methode Library gebruiken we ‘Literature Study’ en ‘SWOT analysis’, voor de methode Lab gebruiken we ‘Non-functional test’ en als laatste voor de methode Workshop gebruiken wij ‘Requirement Prioritization’.
+
+Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘Literature Study’. Deelvraag 2 beantwoorden we door gebruik te maken van ‘SWOT analysis’, deelvraag 3 gaan we beantwoorden door de methode ‘Requirement Prioritization’ toe te passen en als laatste wordt deelvraag 4 beantwoordt door gebruik te maken van ‘Non-functional test’.
+
+
+## 2 Theoretisch Kader en Literatuuronderzoek
 
 ### 2.1 Verschillende Soorten Niet-Relationele Databases
 
@@ -302,7 +322,17 @@ Deze query maakt een match tussen de "Bestelling" en "Klant" knooppunten, die zi
 
 Door deze join query te gebruiken, kunnen we de gegevens uit beide entiteiten combineren en antwoorden krijgen op vragen als "welke klant heeft welke bestellingen geplaatst?" of "welke bestellingen heeft een specifieke klant geplaatst?".
 
-### 2.3 Conclusie
+### 2.3 Criteria voor het kiezen tussen relationele en niet-rationele databases in een applicatie
+
+Er zijn meerdere criteria’s waar je rekening mee moet houden om uiteindelijk tot de conclusie te kunnen komen welke database je wilt gebruiken voor de applicatie. In dit hoofdstuk ga ik ze allemaal langs wat ons een goed beeld moet geven om uiteindelijk tot een conclusie te komen. 
+
+Allereerst moeten we het hebben over de schaalbaarheid. Niet relationele databases zijn over het algemeen ontworpen om ‘side by side’ ofwel horizontaal te schalen. Dit betekent dat een niet relationele database grotere hoeveelheden van data en verkeer aan kan zonder prestatieverlies te lijden.
+
+De volgende criteria is flexibiliteit. Een niet relationele database slaat de gegevens in een niet in een tabel vorm op maar is meer te vergelijken met een soort documenten structuur. ‘Een document kan zeer gedetailleerd zijn en tegelijkertijd een reeks verschillende soorten informatie in verschillende formaten bevatten’ (MongoDB, 2023). Dit kan handig zijn als de applicatie bijvoorbeeld te maken krijgt met ongestructureerde data of wanneer het datamodel in de loop der tijd kan veranderen.
+
+Het laatste criteria is de performance. Doordat een relationele database veel tabellen kan hebben waar op hun plaats weer veel gegevens in zit steeds blijft groeien. Wordt de tijd die nodig is om de queries goed uit te voeren ook steeds groter. Dit probleem heb je niet bij het gebruik van een niet relationele database. Dit komt omdat een niet relationele database de gegevens als het ware naast elkaar opslaat. Hierdoor ondervind je dus niet tot nauwelijks verminderingen van performances naarmate de hoeveelheid gegevens groeit.
+
+### 2.4 Conclusie
 
 Er zijn dus verschillende type niet-relationele databases; elk type gaat op een verschillende manier met data om. Maar, welke niet-relationele database type is de beste oplossing voor de Spotitube applicatie?
 
@@ -329,13 +359,57 @@ Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie 
 
 Concluderend gaan we onderzoeken of MongoDB, als niet-relationele database, de Spotitube applicatie net zo goed of beter kan laten  functioneren dan de huidige relationele database.
 
+## 3 ONDERZOEKSRESULTATEN
+
+Voor dit onderzoeksverslag hebben Suzanne en ik gebruik gemaakt van de onderzoeksmethoden ‘Non-Functional test’ en ‘Requirements prioritization’. Zoals een van onze deelvragen luid: ‘Wat is het verschil in snelheid tussen het ophalen van gegevens uit een niet-relationele database en een relationele database?’ hebben wij dit onderzocht door in zowel een relationele database (in dit geval dus MySQL) als in een niet relationele database (in dit geval MongoDB) te testen hoe lang het duurde voor de database om de gevraagde gegevens op te vragen. Wij denken dat uit deze testen zal blijken dat MongoDB sneller zal zijn dan een traditionele database zoals MySQL.
+
+Om er voor te zorgen dat de resultaten van dit onderzoek betrouwbaar waren hebben we er voor gekozen om beide databases tienduizend keer de testen uit te voeren. Hieruit kwam de gegevens die te zien zijn in ‘Tabel 1’. Zoals te zien is in de tabel is de niet relationele database MongoDB aanzienlijk sneller dan de relationele database MySQL. Het gemiddelde verschil is ongeveer 7 seconden, dit lijkt misschien weinig maar dit kan al een aanzienlijk effect hebben op hoe de gebruiker de interactie met de applicatie ervaart.
+
+Dit is een uitwerking van een van de methodes die we gebruikt hebben om de snelheid te testen van de verschillende databases.
+```Java
+public void testGetAllPlaylists() {
+        long[] mysqlDurations = new long[ITERATIONS];
+        long[] mongoDurations = new long[ITERATIONS];
+        for (int i = 0; i < mysqlDurations.length; i++) {
+            mysqlDurations[i] = MySQLExecutions.getAllPlaylists(connection);
+        }
+        for (int i = 0; i < mongoDurations.length; i++) {
+            mongoDurations[i] = MongoDBExecutions.getAllPlaylists(database);
+        }
+        long mysqlDuration = calculateAverage(mysqlDurations);
+        long mongoDuration = calculateAverage(mongoDurations);
+        long mysqlTotal = calculateTotal(mysqlDurations);
+        long mongoTotal = calculateTotal(mongoDurations);
+
+        printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+    }
+```
+In deze methode ‘testGetAllPlaylists’ initieren we eerst twee arrays van het type ‘long’ waar zometeen de totale tijd die de query nodig had om uit te voeren in opgeslagen wordt. Dit wordt vervolgens gedaan door voor de totale lengte van de array de tijd op te halen. Uiteindelijk wordt het gemiddelde uitgerekend en de totale tijd van alle query’s bij elkaar en wordt dit uitgeprint in de console log. Die gegevens hebben we dus in ‘Tabel 1’ toegevoegd.
+
+| **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Verschil** |
+| --- | --- | --- | --- |
+| getAllPlaylists | 6610ms | 12006ms | 5396ms |
+| getAllTracks | 16828ms | 27886ms | 11058ms |
+| getTracksInPlaylistById | 2917ms | 7722ms | 4805ms |
+| calculateTrackLengthInSeconds | 22198ms | 29486ms | 7288ms |
+
+_Tabel 1: Resultaten testen snelheid_
+
+## 4 CONCLUSIE
+
+Onze hoofdvraag voor dit onderzoek was “Wat zijn de voor- en nadelen van het vervangen van de relationele database door een niet relationele database?”. Zoals uit de onderzoeken is gebleken heeft het gebruiken van een niet relationele database een groot aantal voordelen en zou het een goed alternatief zijn om de relationele database te vervangen voor de applicatie SpotiTube. Voor het onderzoek hebben wij gebruik gemaakt van de MongoDB er is gebleken dat een niet relationele database vele malen sneller is dan een relationele database. Dit heeft als voordeel dat de performance niet leidt onder grote hoeveelheden aan data op halen uit de database, hierdoor kan de gebruiker optimaal gebruik maken van Spotitube. Andere voordelen zijn, zoals al eerder benoemd, de schaalbaarheid en flexibiliteit van de niet relationele database. MongoDB is erg flexibel met accepteren van verschillende soorten data types en kan gemakkelijk uitbreiden omdat hij horizontaal schaalt en niet afhankelijk is van tabellen.
+
+Een van de nadelen van het gebruik van een niet relationele database is dat het mogelijk minder accurate data kan bevatten. Relationele databases maken gebruik van ‘primary keys’ en ‘foreign keys’ dit zorgt er voor dat er geen dubbele informatie voorkomt en dus de gegevens meer accuraat zijn omdat er nooit dubbele informatie voor kan komen.
+
+Echter lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spotitube applicatie denk hier aan bijvoorbeeld het kunnen opslaan van grote datasets en zonder dat de performance er veel onder lijdt gegevens ophalen uit de database. Dus wij denken dat die voordelen zwaarder wegen dan de mogelijke nadelen en zien geen bezwaren tegen het implementeren van een niet relationele database zoals Mongo.
+
 ## Bronnen
 
 Aho, A. V., Beeri, C., & Ullman, J. D. (1979). The theory of joins in relational databases. *ACM Transactions on Database Systems (TODS)*, *4*(3), 297-314.
 
-Jatana, N., Puri, S., Ahuja, M., Kathuria, I., & Gosain, D. (2012). A survey and comparison of relational and non-relational database. *International Journal of Engineering Research & Technology*, *1*(6), 1-5.
+Janata, N., Puri, S., Ahuja, M., Kathuria, I., & Gosain, D. (2012). A survey and comparison of relational and non-relational database. *International Journal of Engineering Research & Technology*, *1*(6), 1-5.
 
-Vera, H., Boaventura, W., Holanda, M., Guimaraes, V., & Hondo, F.  (2015, September). Data modeling for NoSQL document-oriented databases.  In *CEUR Workshop Proceedings* (Vol. 1478, pp. 129-135).
+Vera, H., Boaventura, W., Holanda, M., Guimaraes, V., & Hondo, F.  (2015, September). Data modeling for NoSQL document-oriented databases. In *CEUR Workshop Proceedings* (Vol. 1478, pp. 129-135).
 
 Baron, C. A. (2016). NoSQL key-value DBs riak and redis. *Database Systems Journal*, *6*(4), 3-10.
 
@@ -345,7 +419,7 @@ Angles, R. (2018, May). The Property Graph Database Model. In *AMW*.
 
 Rithika, S. (2022, 29 december). *Understanding MongoDB Joins | 5 Critical Aspects*. Learn | Hevo. https://hevodata.com/learn/mongodb-joins/
 
-*$lookup (aggregation) — MongoDB Manual*. (z.d.). https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
+*$lookup (aggregation) — MongoDB Manual*. (Z.d.). https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
 
 Akhtar, A. (2023). Popularity Ranking of Database Management Systems. *arXiv preprint arXiv:2301.00847*.
 
@@ -356,3 +430,8 @@ Akhtar, A. (2023). Popularity Ranking of Database Management Systems. *arXiv pre
 OpenCredo. (2022, 15 juni). *Everything you need to know about Cassandra Materialized Views - OpenCredo*. https://opencredo.com/blogs/everything-need-know-cassandra-materialized-views/
 
 E. (2022b, maart 9). *You Want Some Join Context? Neo4j Has You Covered*. Neo4j Graph Data Platform. https://neo4j.com/blog/join-context-neo4j/
+
+MongoDB. (2023, Januari 1). What Is a Non-Relational Database? Opgeroepen op Maart 31, 2023, van MongoDB.
+
+ICT Research Methods. (2022, Juni 10). Methods. Opgeroepen op Maart 31, 2023, van ictresearchmethods: https://ictresearchmethods.nl/Methods
+
