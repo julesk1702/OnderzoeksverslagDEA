@@ -467,10 +467,10 @@ De playlists waar een track in zit worden bijvoorbeeld opgeslagen in de track ze
 		"playlistId": 1,
 		"offlineAvailable": true,
 	},
-    {
-        "playlistId": 2,
+	{
+		"playlistId": 2,
 		"offlineAvailable": false,
-    }
+	}
 ]
 ```
 
