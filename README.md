@@ -29,8 +29,9 @@ ___
        	4. [Join-Operaties in Neo4j](#224-join-operaties-in-neo4j)
    3. [Conclusie](#23-conclusie)
 3. [Onderzoeksresultaten](#3-onderzoeksresultaten)
-4. [Conclusie](#4-conclusie)
-5. [Bronnen](#5-bronnen)
+4. [Werkplaatsonderzoek](#4-werkplaatsonderzoek)
+5. [Conclusie](#5-conclusie)
+6. [Bronnen](#6-bronnen)
 
 
 ## 1 Inleiding
@@ -362,7 +363,7 @@ Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie 
 
 Concluderend gaan we onderzoeken of MongoDB, als niet-relationele database, de Spotitube applicatie net zo goed of beter kan laten  functioneren dan de huidige relationele database.
 
-## 3 ONDERZOEKSRESULTATEN
+## 3 Onderzoeksresultaten
 
 Voor dit onderzoeksverslag hebben Suzanne en ik gebruik gemaakt van de onderzoeksmethoden ‘Non-Functional test’ en ‘Requirements prioritization’. Zoals een van onze deelvragen luid: ‘Wat is het verschil in snelheid tussen het ophalen van gegevens uit een niet-relationele database en een relationele database?’ hebben wij dit onderzocht door in zowel een relationele database (in dit geval dus MySQL) als in een niet relationele database (in dit geval MongoDB) te testen hoe lang het duurde voor de database om de gevraagde gegevens op te vragen. Wij denken dat uit deze testen zal blijken dat MongoDB sneller zal zijn dan een traditionele database zoals MySQL.
 
@@ -398,7 +399,82 @@ In deze methode ‘testGetAllPlaylists’ initieren we eerst twee arrays van het
 
 _Tabel 1: Resultaten testen snelheid_
 
-## 4 CONCLUSIE
+## 4 Werkplaatsonderzoek 
+
+Het implementeren van MongoDB in plaats van MySQL in de Spotitube applicatie ging erg gemakkelijk doordat in de Spotitube applicatie het Separated Interface Pattern en het DAO-pattern zijn gebruikt. Hierdoor hoefde alleen de database queries en de data mapper patterns aangepast te worden.
+
+Hier is bijvoorbeeld de implementatie van het ophalen van alle playlists in MySQL:
+
+```java
+@Override
+public PlaylistCollectionDTO read() throws DataAccessException {
+    try {
+        DbConnection dbConnection = new DbConnection();
+        Connection connection = dbConnection.getConnection();
+        PreparedStatement playlistTableStatement = connection.prepareStatement("SELECT * FROM playlists");
+        ResultSet resultSet = playlistTableStatement.executeUpdate();
+        return ResultSetMapper.mapToPlaylistDTOCollection(resultSet);
+    } catch (Exception e) {
+        throw new DataAccessException(e.getMessage());
+    }
+}
+```
+
+Dit is dezelfde methode, maar dan met een MongoDB database:
+
+```java
+@Override
+public PlaylistCollectionDTO read() throws DataAccessException {
+    try {
+        MongoDatabase database = MongoDbConnection.getDatabase();
+        MongoCollection<Document> playlistCollection = database.getCollection("playlists");
+        List<Document> playlists = new ArrayList<>();
+        playlistCollection.find(new Document()).iterator().forEachRemaining(playlists::add);
+        return DocumentMapper.documentListToPlaylistCollectionDTO(playlists);
+    } catch (Exception e) {
+        throw new DataAccessException(e.getMessage());
+    }
+}
+```
+
+Zoals je ziet, was deze verandering bijzonder makkelijk te maken. 
+
+Bij de MySQL implementatie van de applicatie hadden we verschillende tabellen;
+
+- Users
+- Playlists
+- Tracks
+- Track_playlist_relations
+- User_playlist_relations
+
+de 'relations' tabellen bevatten foreign keys die bijvoorbeeld aangeven welke tracks er bij welke playlists horen. In MongoDB doen we dit anders.
+
+In MongoDB hebben we simpelweg 3 collecties:
+
+- Users
+- Playlists
+- Tracks
+
+De playlists waar een track in zit worden bijvoorbeeld opgeslagen in de track zelf; er is hier een extra veld toegevoegd, playlists:
+
+```json
+[
+	{
+		"playlistId": 1,
+		"offlineAvailable": true,
+	},
+    {
+        "playlistId": 2,
+		"offlineAvailable": false,
+    }
+]
+```
+
+Aangezien dit nu wordt opgeslagen in de track zelf, kan dit veel sneller opgehaald in tegenstelling tot de MySQL functie, die eerst een JOIN-operatie moet uitvoeren.
+
+We zijn ongeveer 3 uur bezig geweest met het omzetten van de MySQL database naar de MongoDB database; een hele korte tijd, dus. MongoDB kon extreem makkelijk geïmplementeerd te worden en we hadden minder problemen dan bij het implementeren van MySQL. MongoDB is dus, naar onze mening, een betere database om te gebruiken voor de Spotitube applicatie. 
+
+## 5 Conclusie
 
 Onze hoofdvraag voor dit onderzoek was “Wat zijn de voor- en nadelen van het vervangen van de relationele database door een niet relationele database?”. Zoals uit de onderzoeken is gebleken heeft het gebruiken van een niet relationele database een groot aantal voordelen en zou het een goed alternatief zijn om de relationele database te vervangen voor de applicatie SpotiTube. Voor het onderzoek hebben wij gebruik gemaakt van de MongoDB er is gebleken dat een niet relationele database vele malen sneller is dan een relationele database. Dit heeft als voordeel dat de performance niet leidt onder grote hoeveelheden aan data op halen uit de database, hierdoor kan de gebruiker optimaal gebruik maken van Spotitube. Andere voordelen zijn, zoals al eerder benoemd, de schaalbaarheid en flexibiliteit van de niet relationele database. MongoDB is erg flexibel met accepteren van verschillende soorten data types en kan gemakkelijk uitbreiden omdat hij horizontaal schaalt en niet afhankelijk is van tabellen.
 
@@ -406,7 +482,7 @@ Een van de nadelen van het gebruik van een niet relationele database is dat het 
 
 Echter lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spotitube applicatie denk hier aan bijvoorbeeld het kunnen opslaan van grote datasets en zonder dat de performance er veel onder lijdt gegevens ophalen uit de database. Dus wij denken dat die voordelen zwaarder wegen dan de mogelijke nadelen en zien geen bezwaren tegen het implementeren van een niet relationele database zoals Mongo.
 
-## Bronnen
+## 6 Bronnen
 
 Aho, A. V., Beeri, C., & Ullman, J. D. (1979). The theory of joins in relational databases. *ACM Transactions on Database Systems (TODS)*, *4*(3), 297-314.
 
