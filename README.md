@@ -484,7 +484,7 @@ Onze hoofdvraag voor dit onderzoek was “Wat zijn de voor- en nadelen van het v
 
 Een van de nadelen van het gebruik van een niet relationele database is dat het mogelijk minder accurate data kan bevatten. Relationele databases maken gebruik van ‘primary keys’ en ‘foreign keys’ dit zorgt er voor dat er geen dubbele informatie voorkomt en dus de gegevens meer accuraat zijn omdat er nooit dubbele informatie voor kan komen.
 
-Echter lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spotitube applicatie denk hier aan bijvoorbeeld het kunnen opslaan van grote datasets en zonder dat de performance er veel onder lijdt gegevens ophalen uit de database. Dus wij denken dat die voordelen zwaarder wegen dan de mogelijke nadelen en zien geen bezwaren tegen het implementeren van een niet relationele database zoals Mongo.
+Echter lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spotitube applicatie denk hier aan bijvoorbeeld het kunnen opslaan van grote datasets en zonder dat de performance er veel onder lijdt gegevens ophalen uit de database. Dus wij denken dat die voordelen zwaarder wegen dan de mogelijke nadelen en zien geen bezwaren tegen het implementeren van een niet relationele database zoals MongoDB.
 
 ## 6 Bronnen
 
