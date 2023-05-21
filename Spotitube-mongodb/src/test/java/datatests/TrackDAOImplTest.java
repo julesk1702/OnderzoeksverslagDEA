@@ -85,7 +85,7 @@ public class TrackDAOImplTest {
     public void testCalculateTracksLengthInSeconds() {
         // Arrange
         // Act
-        int result = trackDAOImpl.calculateTrackLengthInSeconds();
+        long result = trackDAOImpl.calculateTrackLengthInSeconds();
         // Assert
         assertNotNull(result);
         assertEquals(true, result > 0);

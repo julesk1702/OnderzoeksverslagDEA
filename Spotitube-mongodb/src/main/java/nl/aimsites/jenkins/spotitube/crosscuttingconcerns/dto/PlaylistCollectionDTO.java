@@ -7,7 +7,7 @@ package nl.aimsites.jenkins.spotitube.crosscuttingconcerns.dto;
 public class PlaylistCollectionDTO {
 
     private PlaylistDTO[] playlists;
-    private int length;
+    private long length;
 
     public PlaylistCollectionDTO() {
     }
@@ -25,11 +25,11 @@ public class PlaylistCollectionDTO {
         this.playlists = playlists;
     }
 
-    public int getLength() {
+    public long getLength() {
         return length;
     }
 
-    public void setLength(int length) {
+    public void setLength(long length) {
         this.length = length;
     }
 }

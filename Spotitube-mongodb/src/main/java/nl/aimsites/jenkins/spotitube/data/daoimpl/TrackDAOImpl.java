@@ -94,7 +94,7 @@ public class TrackDAOImpl implements TrackDAO {
     }
 
     @Override
-    public int calculateTrackLengthInSeconds() throws DataAccessException {
+    public long calculateTrackLengthInSeconds() throws DataAccessException {
         try {
             DbConnection dbConnection = new DbConnection();
             PreparedStatement statement = dbConnection.getConnection().prepareStatement(

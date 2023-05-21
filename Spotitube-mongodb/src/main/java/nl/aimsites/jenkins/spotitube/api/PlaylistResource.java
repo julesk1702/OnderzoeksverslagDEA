@@ -86,6 +86,7 @@ public class PlaylistResource {
     public Response editPlaylist(@QueryParam("token") String token, @PathParam("id") int id, PlaylistDTO playlist) {
         if (playlist.getName() == null) throw new PreconditionFailedException("No playlist name provided");
         if (playlistController.getSpecificPlaylist(id, token) == null) throw new NotFoundException("A playlist with that ID does not exist");
+        playlist.setId(id);
         return status(200).entity(playlistController.updatePlaylist(playlist, token)).build();
     }
 

@@ -38,7 +38,8 @@ public class PlaylistDAOImpl implements PlaylistDAO {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> playlistCollection = database.getCollection("playlists");
-            Document playlistFilter = new Document("id", id);
+            String idString = Integer.toString(id);
+            Document playlistFilter = new Document("id", idString);
             playlistCollection.deleteOne(playlistFilter);
         } catch (Exception e) {
             throw new DataAccessException(e.getMessage());
@@ -50,7 +51,8 @@ public class PlaylistDAOImpl implements PlaylistDAO {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> playlistCollection = database.getCollection("playlists");
-            Document playlistFilter = new Document("id", id);
+            String idString = Integer.toString(id);
+            Document playlistFilter = new Document("id", idString);
             playlistCollection.updateOne(playlistFilter, new Document("$set", new Document("name", name)));
         } catch (Exception e) {
             throw new DataAccessException(e.getMessage());
@@ -104,4 +106,5 @@ public class PlaylistDAOImpl implements PlaylistDAO {
             throw new DataAccessException(e.getMessage());
         }
     }
+
 }

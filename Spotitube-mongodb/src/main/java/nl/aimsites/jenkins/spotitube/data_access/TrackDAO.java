@@ -52,6 +52,6 @@ public interface TrackDAO {
      * @return Total length of all tracks in all playlists
      * @throws DataAccessException Read or write error
      */
-    int calculateTrackLengthInSeconds() throws DataAccessException;
+    long calculateTrackLengthInSeconds() throws DataAccessException;
 
 }

@@ -23,8 +23,8 @@ public class TrackDAOImpl implements TrackDAO {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> tracksCollection = database.getCollection("tracks");
-            List<Document> tracks = new ArrayList<>();
-            tracksCollection.find(new Document("playlists", new Document("$elemMatch", new Document("playlistId", playlistId)))).iterator().forEachRemaining(tracks::add);
+            Document filter = new Document("playlists.playlistId", String.valueOf(playlistId));
+            List<Document> tracks = tracksCollection.find(filter).into(new ArrayList<>());
             return DocumentMapper.documentListToTrackCollectionDTO(tracks);
         } catch (Exception e) {
             throw new DataAccessException(e.getMessage());
@@ -49,7 +49,8 @@ public class TrackDAOImpl implements TrackDAO {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> tracksCollection = database.getCollection("tracks");
-            Document trackFilter = new Document("id", track.getId());
+            String stringId = Integer.toString(track.getId());
+            Document trackFilter = new Document("id", stringId);
             Document update = new Document("$addToSet", new Document("playlists", new Document("playlistId", Integer.toString(playlistId))));
             tracksCollection.updateOne(trackFilter, update);
         } catch (Exception e) {
@@ -62,8 +63,10 @@ public class TrackDAOImpl implements TrackDAO {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> trackCollection = database.getCollection("tracks");
-            Document trackFilter = new Document("id", trackId);
-            trackCollection.updateOne(trackFilter, new Document("$pull", new Document("playlists", playlistId)));
+            String stringTrackId = Integer.toString(trackId);
+            Document trackFilter = new Document("id", stringTrackId);
+            Document update = new Document("$pull", new Document("playlists", new Document("playlistId", Integer.toString(playlistId))));
+            trackCollection.updateOne(trackFilter, update);
         } catch (Exception e) {
             throw new DataAccessException(e.getMessage());
         }
@@ -83,15 +86,17 @@ public class TrackDAOImpl implements TrackDAO {
     }
 
     @Override
-    public int calculateTrackLengthInSeconds() throws DataAccessException {
+    public long calculateTrackLengthInSeconds() throws DataAccessException {
         try {
             MongoDatabase database = MongoDbConnection.getDatabase();
             MongoCollection<Document> tracksCollection = database.getCollection("tracks");
             List<Document> tracks = new ArrayList<>();
             tracksCollection.find().iterator().forEachRemaining(tracks::add);
-            int totalDuration = 0;
+            long totalDuration = 0;
             for (Document track : tracks) {
-                totalDuration += Integer.parseInt(track.getString("duration"));
+                String durationString = track.getString("duration");
+                long durationInSeconds = Long.parseLong(durationString);
+                totalDuration += durationInSeconds;
             }
             return totalDuration;
         } catch (Exception e) {
