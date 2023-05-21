@@ -11,6 +11,13 @@ Versie: 2.0
 
 ___
 
+## Samenvatting
+Dit onderzoeksverslag heeft tot doel de voor- en nadelen van het vervangen van de relationele database MySQL door de niet-relationele database MongoDB te onderzoeken. Uit de resultaten van het onderzoek is gebleken dat MongoDB verschillende voordelen biedt en een geschikt alternatief zou zijn voor MySQL in de SpotiTube-applicatie. MongoDB heeft aangetoond veel sneller te zijn dan MySQL, waardoor de prestaties minder worden beïnvloed bij het ophalen van grote hoeveelheden gegevens uit de database, waardoor gebruikers optimaal gebruik kunnen maken van SpotiTube. Andere voordelen van MongoDB zijn de schaalbaarheid en flexibiliteit, waarbij het gemakkelijk verschillende datatypen accepteert en horizontaal schaalt zonder afhankelijk te zijn van tabellen.
+
+Een van de nadelen van MongoDB is dat het mogelijk minder accurate data kan bevatten in vergelijking met MySQL, vanwege het ontbreken van 'primary keys' en 'foreign keys' die duplicatie van informatie voorkomen.
+
+Niettemin lijken de voordelen van MongoDB te voldoen aan de behoeften van de SpotiTube-applicatie, zoals het kunnen opslaan van grote datasets en het ophalen van gegevens uit de database zonder significante prestatieverlies. Op basis hiervan zijn er geen bezwaren tegen de implementatie van een niet-relationele database zoals MongoDB voor SpotiTube.
+
 ## Inhoudsopgave
 
 1. [Inleiding](#1-inleiding)
@@ -34,8 +41,9 @@ ___
    3. [Conclusie](#23-conclusie)
 3. [Onderzoeksresultaten](#3-onderzoeksresultaten)
 4. [Werkplaatsonderzoek](#4-werkplaatsonderzoek)
-5. [Conclusie](#5-conclusie)
-6. [Bronnen](#6-bronnen)
+5. [Discussie](#5-discussie)
+6. [Conclusie](#6-conclusie)
+7. [Bronnen](#7-bronnen)
 
 
 ## 1 Inleiding
@@ -484,15 +492,22 @@ Aangezien dit nu wordt opgeslagen in de track zelf, kan dit veel sneller opgehaa
 
 We zijn ongeveer 3 uur bezig geweest met het omzetten van de MySQL database naar de MongoDB database; een hele korte tijd, dus. MongoDB kon extreem makkelijk geïmplementeerd te worden en we hadden minder problemen dan bij het implementeren van MySQL. MongoDB is dus, naar onze mening, een betere database om te gebruiken voor de Spotitube applicatie. 
 
-## 5 Conclusie
+## 5 Discussie
+**TODO**
 
-Onze hoofdvraag voor dit onderzoek was “Wat zijn de voor- en nadelen van het vervangen van de relationele database door een niet relationele database?”. Zoals uit de onderzoeken is gebleken heeft het gebruiken van een niet relationele database een groot aantal voordelen en zou het een goed alternatief zijn om de relationele database te vervangen voor de applicatie SpotiTube. Voor het onderzoek hebben wij gebruik gemaakt van de MongoDB er is gebleken dat een niet relationele database vele malen sneller is dan een relationele database. Dit heeft als voordeel dat de performance niet leidt onder grote hoeveelheden aan data op halen uit de database, hierdoor kan de gebruiker optimaal gebruik maken van Spotitube. Andere voordelen zijn, zoals al eerder benoemd, de schaalbaarheid en flexibiliteit van de niet relationele database. MongoDB is erg flexibel met accepteren van verschillende soorten data types en kan gemakkelijk uitbreiden omdat hij horizontaal schaalt en niet afhankelijk is van tabellen.
+## 6 Conclusie
 
-Een van de nadelen van het gebruik van een niet relationele database is dat het mogelijk minder accurate data kan bevatten. Relationele databases maken gebruik van ‘primary keys’ en ‘foreign keys’ dit zorgt er voor dat er geen dubbele informatie voorkomt en dus de gegevens meer accuraat zijn omdat er nooit dubbele informatie voor kan komen.
+Na uitgebreid onderzoek naar de voor- en nadelen van het vervangen van de relationele database MySQL door de niet-relationele database MongoDB voor de SpotiTube-applicatie, kunnen we concluderen dat het gebruik van MongoDB aanzienlijke voordelen biedt en een geschikt alternatief zou zijn voor MySQL.
 
-Echter lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spotitube applicatie denk hier aan bijvoorbeeld het kunnen opslaan van grote datasets en zonder dat de performance er veel onder lijdt gegevens ophalen uit de database. Dus wij denken dat die voordelen zwaarder wegen dan de mogelijke nadelen en zien geen bezwaren tegen het implementeren van een niet relationele database zoals MongoDB.
+Een van de belangrijkste voordelen die uit ons onderzoek naar voren kwam, is dat MongoDB aanzienlijk sneller presteert dan MySQL. Deze verbeterde snelheid is vooral merkbaar bij het ophalen van grote hoeveelheden data uit de database. Door de snelle respons van MongoDB kan de gebruiker van SpotiTube optimaal gebruik maken van de applicatie, zonder dat de prestaties merkbaar lijden onder het verwerken van omvangrijke datasets.
 
-## 6 Bronnen
+Daarnaast biedt MongoDB aanzienlijke schaalbaarheids- en flexibiliteitsvoordelen. Het is zeer flexibel bij het accepteren van verschillende datatypen, waardoor het gemakkelijker wordt om gevarieerde informatie in de database op te slaan. Bovendien kan MongoDB horizontaal schalen, wat betekent dat het eenvoudig kan worden uitgebreid zonder afhankelijk te zijn van tabellen. Dit maakt het gemakkelijker om de database aan te passen aan toekomstige groei en veranderingen in de SpotiTube-applicatie.
+
+Hoewel er enkele nadelen zijn verbonden aan het gebruik van MongoDB, zoals het potentieel bevatten van minder accurate data in vergelijking met MySQL, zijn wij van mening dat de voordelen zwaarder wegen dan deze mogelijke nadelen. De behoeften van de SpotiTube-applicatie, zoals het efficiënt opslaan van grote datasets en het probleemloos ophalen van gegevens uit de database, worden goed vervuld door MongoDB.
+
+Op basis van onze bevindingen raden we aan om over te stappen op een niet-relationele database zoals MongoDB voor de SpotiTube-applicatie. De voordelen op het gebied van prestaties, schaalbaarheid en flexibiliteit wegen zwaarder dan de mogelijke nadelen. Hierdoor kan SpotiTube profiteren van verbeterde functionaliteit en efficiëntie in gegevensverwerking, wat uiteindelijk een positieve impact zal hebben op de gebruikerservaring.
+
+## 7 Bronnen
 
 - Aho, A. V., Beeri, C., & Ullman, J. D. (1979). The theory of joins in relational databases. *ACM Transactions on Database Systems (TODS)*, *4*(3), 297-314.
 
