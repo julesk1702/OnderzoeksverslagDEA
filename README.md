@@ -348,7 +348,7 @@ Door deze join query te gebruiken, kunnen we de gegevens uit beide entiteiten co
 
 Er zijn meerdere criteria’s waar je rekening mee moet houden om uiteindelijk tot de conclusie te kunnen komen welke database je wilt gebruiken voor de applicatie. In dit hoofdstuk ga ik ze allemaal langs wat ons een goed beeld moet geven om uiteindelijk tot een conclusie te komen. 
 
-Allereerst moeten we het hebben over de schaalbaarheid. Niet relationele databases zijn over het algemeen ontworpen om ‘side by side’ ofwel horizontaal te schalen. Dit betekent dat een niet relationele database grotere hoeveelheden van data en verkeer aan kan zonder prestatieverlies te lijden.
+Allereerst moeten we het hebben over de schaalbaarheid. "Niet relationele databases zijn over het algemeen ontworpen om ‘side by side’ ofwel horizontaal te schalen. Dit betekent dat een niet relationele database grotere hoeveelheden van data en verkeer aan kan zonder prestatieverlies te lijden." (MongoDB, 2023)
 
 De volgende criteria is flexibiliteit. Een niet relationele database slaat de gegevens in een niet in een tabel vorm op maar is meer te vergelijken met een soort documenten structuur. ‘Een document kan zeer gedetailleerd zijn en tegelijkertijd een reeks verschillende soorten informatie in verschillende formaten bevatten’ (MongoDB, 2023). Dit kan handig zijn als de applicatie bijvoorbeeld te maken krijgt met ongestructureerde data of wanneer het datamodel in de loop der tijd kan veranderen.
 
@@ -494,6 +494,7 @@ We zijn ongeveer 3 uur bezig geweest met het omzetten van de MySQL database naar
 
 ## 5 Discussie
 **TODO**
+
 
 ## 6 Conclusie
 
