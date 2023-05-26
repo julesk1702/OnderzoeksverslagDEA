@@ -78,7 +78,7 @@ Om tot een conclusie te komen op de hoofdvraag hebben we een viertal deelvragen 
 
 2.	Hoe kan men vergelijkbare resultaten behalen in een niet-relationele database, zoals die verkregen worden via een join-operatie in een relationele database? 
 
-3.      Welke criteria moeten worden vervuld om MongoDB in te kunnen zetten ter vervanging van een relationele database in een applicatie?
+3. Welke criteria moeten worden vervuld om MongoDB in te kunnen zetten ter vervanging van een relationele database in een applicatie?
 
 4.	Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL? 
 
