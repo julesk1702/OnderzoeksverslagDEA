@@ -46,8 +46,9 @@ public class Benchmarks {
         long mongoDuration = calculateAverage(mongoDurations);
         long mysqlTotal = calculateTotal(mysqlDurations);
         long mongoTotal = calculateTotal(mongoDurations);
+        long percentage = calculatePercentage(mongoTotal, mysqlTotal);
 
-        printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+        printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal, percentage);
     }
 
     public void testGetAllTracks() {
@@ -63,8 +64,9 @@ public class Benchmarks {
         long mongoDuration = calculateAverage(mongoDurations);
         long mysqlTotal = calculateTotal(mysqlDurations);
         long mongoTotal = calculateTotal(mongoDurations);
+        long percentage = calculatePercentage(mongoTotal, mysqlTotal);
 
-        printResults("getAllTracks", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+        printResults("getAllTracks", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal, percentage);
     }
 
     public void getTracksInPlaylistById() {
@@ -80,8 +82,9 @@ public class Benchmarks {
         long mongoDuration = calculateAverage(mongoDurations);
         long mysqlTotal = calculateTotal(mysqlDurations);
         long mongoTotal = calculateTotal(mongoDurations);
+        long percentage = calculatePercentage(mongoTotal, mysqlTotal);
 
-        printResults("getTracksInPlaylistById", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+        printResults("getTracksInPlaylistById", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal, percentage);
     }
 
     public void calculateTrackLength() {
@@ -97,8 +100,9 @@ public class Benchmarks {
         long mongoDuration = calculateAverage(mongoDurations);
         long mysqlTotal = calculateTotal(mysqlDurations);
         long mongoTotal = calculateTotal(mongoDurations);
+        long percentage = calculatePercentage(mongoTotal, mysqlTotal);
 
-        printResults("calculateTrackLengthInSeconds", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+        printResults("calculateTrackLengthInSeconds", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal, percentage);
     }
 
     private long calculateAverage(long[] durations) {
@@ -118,13 +122,23 @@ public class Benchmarks {
         return durationTotal;
     }
 
-    private void printResults(String text, long mongoDbAvgResults, long mySqlAvgResults, long mongoDbTotalResults, long mySqlTotalResults) {
+    private long calculatePercentage(long mongo, long mysql) {
+        if ((double) mongo < mysql) {
+            return (long) ((double) mongo / mysql * 100);
+        } else {
+            return (long) ((double) mysql / mongo * 100);
+        }
+    }
+
+    private void printResults(String text, long mongoDbAvgResults, long mySqlAvgResults, long mongoDbTotalResults, long mySqlTotalResults, long percentage) {
         System.out.println("Testing " + text);
         System.out.println("MySQL average duration: " + mongoDbAvgResults + "ms");
         System.out.println("MongoDB average duration: " + mySqlAvgResults + "ms");
         System.out.println("\n");
         System.out.println("MySQL total duration: " + mongoDbTotalResults + "ms");
         System.out.println("MongoDB total duration: " + mySqlTotalResults + "ms");
+        System.out.println("\n");
+        System.out.println(percentage + "faster");
         System.out.println("---------------------------------------------------------");
     }
 

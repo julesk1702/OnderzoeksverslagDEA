@@ -39,7 +39,7 @@ Niettemin lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spo
        	3. [Join-Operaties in Apache Cassandra](#223-join-operaties-in-apache-cassandra)
        	4. [Join-Operaties in Neo4j](#224-join-operaties-in-neo4j)
    3. [Conclusie](#23-conclusie)
-3. [Onderzoeksresultaten](#3-onderzoeksresultaten)
+3. [Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL?](#3-wat-is-het-verschil-in-snelheid-tussen-het-ophalen-van-gegevens-uit-mongodb-vergeleken-met-mysql)
 4. [Werkplaatsonderzoek](#4-werkplaatsonderzoek)
 5. [Discussie](#5-discussie)
 6. [Conclusie](#6-conclusie)
@@ -346,7 +346,7 @@ Door deze join query te gebruiken, kunnen we de gegevens uit beide entiteiten co
 
 ### 2.3 Criteria voor het kiezen tussen relationele en niet-rationele databases in een applicatie
 
-Er zijn meerdere criteria’s waar je rekening mee moet houden om uiteindelijk tot de conclusie te kunnen komen welke database je wilt gebruiken voor de applicatie. In dit hoofdstuk ga ik ze allemaal langs wat ons een goed beeld moet geven om uiteindelijk tot een conclusie te komen. 
+Er zijn meerdere criteria waar je rekening mee moet houden om uiteindelijk tot de conclusie te kunnen komen welke database je wilt gebruiken voor de applicatie. In dit hoofdstuk ga ik ze allemaal langs wat ons een goed beeld moet geven om uiteindelijk tot een conclusie te komen. 
 
 Allereerst moeten we het hebben over de schaalbaarheid. "Niet relationele databases zijn over het algemeen ontworpen om ‘side by side’ ofwel horizontaal te schalen. Dit betekent dat een niet relationele database grotere hoeveelheden van data en verkeer aan kan zonder prestatieverlies te lijden." (MongoDB, 2023)
 
@@ -381,13 +381,61 @@ Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie 
 
 Concluderend gaan we onderzoeken of MongoDB, als niet-relationele database, de Spotitube applicatie net zo goed of beter kan laten  functioneren dan de huidige relationele database.
 
-## 3 Onderzoeksresultaten
+## 3 Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL?
 
-Voor dit onderzoeksverslag hebben Suzanne en ik gebruik gemaakt van de onderzoeksmethoden ‘Non-Functional test’ en ‘Requirements prioritization’. Zoals een van onze deelvragen luid: ‘Wat is het verschil in snelheid tussen het ophalen van gegevens uit een niet-relationele database en een relationele database?’ hebben wij dit onderzocht door in zowel een relationele database (in dit geval dus MySQL) als in een niet relationele database (in dit geval MongoDB) te testen hoe lang het duurde voor de database om de gevraagde gegevens op te vragen. Wij denken dat uit deze testen zal blijken dat MongoDB sneller zal zijn dan een traditionele database zoals MySQL.
+Om het verschil in snelheid tussen het ophalen van gegevens uit MongoDB en MySQL te onderzoeken, hebben we een reeks snelheidstesten uitgevoerd in de Spotitube applicatie. In deze tests hebben we vier verschillende methoden getest: getAllPlaylists, getAllTracks, getTracksInPlaylistById en calculateTrackLengthInSeconds. Elke test werd 10.000 keer uitgevoerd, en we hebben de totale duur in milliseconden gemeten. We hebben de testen allemaal 3 keer uitgevoerd en de gemiddelde duur van de 3 tests genomen om de resultaten te berekenen, voor optimale accuraatheid.
 
-Om er voor te zorgen dat de resultaten van dit onderzoek betrouwbaar waren hebben we er voor gekozen om beide databases tienduizend keer de testen uit te voeren. Hieruit kwam de gegevens die te zien zijn in ‘Tabel 1’. Zoals te zien is in de tabel is de niet relationele database MongoDB aanzienlijk sneller dan de relationele database MySQL. Het gemiddelde verschil is ongeveer 7 seconden, dit lijkt misschien weinig maar dit kan al een aanzienlijk effect hebben op hoe de gebruiker de interactie met de applicatie ervaart.
+De resultaten van de snelheidstesten zijn samengevat in Tabel 1, Tabel 2 en Tabel 3, waarbij elke tabel de resultaten van een reeks tests weergeeft.
 
-Dit is een uitwerking van een van de methodes die we gebruikt hebben om de snelheid te testen van de verschillende databases.
+| **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Procent Sneller** |
+| --- | --- | --- | --- |
+| getAllPlaylists                 | 6.610 ms   | 12.006 ms  | MongoDB is **55%** sneller dan MySQL |
+| getAllTracks                    | 16.828 ms  | 27.886 ms  | MongoDB is **60%** sneller dan MySQL |
+| getTracksInPlaylistById         | 2.917 ms   | 7.722 ms   | MongoDB is **38%** sneller dan MySQL |
+| calculateTrackLengthInSeconds   | 22.198 ms  | 29.486 ms  | MongoDB is **75%** sneller dan MySQL |
+_Tabel 1: Resultaten van snelheidstesten_
+
+| **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Procent Sneller** |
+| --- | --- | --- | --- |
+| getAllPlaylists                 | 8.810 ms   | 14.675 ms  | MongoDB is **60%** sneller dan MySQL |
+| getAllTracks                    | 15.835 ms  | 29.097 ms  | MongoDB is **54%** sneller dan MySQL |
+| getTracksInPlaylistById         | 3.084 ms   | 8.301 ms   | MongoDB is **37%** sneller dan MySQL |
+| calculateTrackLengthInSeconds   | 24.475 ms  | 34.475 ms  | MongoDB is **70%** sneller dan MySQL |
+_Tabel 2: Resultaten van snelheidstesten_
+
+| **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Procent Sneller** |
+| --- | --- | --- | --- |
+| getAllPlaylists                 | 6.606 ms   | 13.232 ms  | MongoDB is **49%** sneller dan MySQL |
+| getAllTracks                    | 15.210 ms  | 29.598 ms  | MongoDB is **51%** sneller dan MySQL |
+| getTracksInPlaylistById         | 2.667 ms   | 7.811 ms   | MongoDB is **34%** sneller dan MySQL |
+| calculateTrackLengthInSeconds   | 22.084 ms  | 28.896 ms  | MongoDB is **76%** sneller dan MySQL |
+_Tabel 3: Resultaten van snelheidstesten_
+
+Uit de resultaten van de snelheidstesten blijkt dat MongoDB in alle gevallen sneller is dan MySQL. De snelheidswinst varieert van 34% tot 76%, met een gemiddelde snelheidswinst van 55%. Dit betekent dat MongoDB gemiddeld 55% sneller is dan MySQL bij het ophalen van gegevens uit de Spotitube applicatie.
+
+De resultaten van de snelheidstesten zijn samengevat in Tabel 4, waarbij het gemiddelde percentage sneller van MongoDB ten opzichte van MySQL is berekend.
+
+| **Geteste methode** | **Gemiddelde snelheid MongoDB** | **Gemiddelde snelheid MySQL** | **Gemiddeld percentage sneller** |
+| --- | --- | --- | --- |
+| getAllPlaylists                 | 7.342 ms   | 13.304 ms  | MongoDB is gemiddeld **55%** sneller dan MySQL |
+| getAllTracks                    | 15.957 ms  | 28.860 ms  | MongoDB is gemiddeld **55%** sneller dan MySQL |
+| getTracksInPlaylistById         | 2.889 ms   | 7.944 ms   | MongoDB is gemiddeld **36%** sneller dan MySQL |
+| calculateTrackLengthInSeconds   | 22.919 ms  | 30.952 ms  | MongoDB is gemiddeld **74%** sneller dan MySQL |
+_Table 4: Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL_
+
+Om de testen uit te voeren, vullen we zowel de MySQL-database als de MongoDB-database met dezelfde 500 playlists en 500 tracks. Vervolgens vullen we beide databases met 500 relaties tussen de playlists en tracks; Deze data staat in JSON bestanden, waarvan de MySQL-database en de MongoDB-database allebei gebruik van maken. Voor het testen wordt alle data uit de database verwijderd en wordt de data opnieuw ingevoerd, zodat de data altijd hetzelfde zal zijn voor het uitvoeren van de testen. Om de testen uit te voeren gebruiken we select queries voor MySQL en find queries voor MongoDB, aangezien dit de meest gebruikte queries zijn in de Spotitube applicatie.
+
+De testen worden uitgevoerd op een lokale machine met de specificaties die in Tabel 5 worden weergegeven. Allebei de databases zijn geïnstalleerd op dezelfde machine, zodat de testen onder dezelfde omstandigheden worden uitgevoerd.
+
+| **Specificatie** | **Waarde** |
+| --- | --- |
+| Besturingssysteem | Windows 11 Home 22H2 |
+| Processor | Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz 2.21 GHz |
+| RAM | 32,0 GB (31,9 GB bruikbaar) |
+| Systeemtype | 64-bits besturingssysteem, x64-gebaseerde processor |
+_Tabel 5: Specificaties van de machine waarop de testen zijn uitgevoerd_
+
+Hieronder volgt een codefragment waarin een van de methoden wordt gedemonstreerd die we hebben gebruikt om de snelheid van de verschillende databases te testen:
 ```Java
 public void testGetAllPlaylists() {
         long[] mysqlDurations = new long[ITERATIONS];
@@ -402,20 +450,18 @@ public void testGetAllPlaylists() {
         long mongoDuration = calculateAverage(mongoDurations);
         long mysqlTotal = calculateTotal(mysqlDurations);
         long mongoTotal = calculateTotal(mongoDurations);
+        long percentage = calculatePercentage(mongoTotal, mysqlTotal);
 
-        printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal);
+        printResults("getAllPlaylists", mongoDuration, mysqlDuration, mongoTotal, mysqlTotal, percentage);
     }
 ```
-In deze methode ‘testGetAllPlaylists’ initieren we eerst twee arrays van het type ‘long’ waar zometeen de totale tijd die de query nodig had om uit te voeren in opgeslagen wordt. Dit wordt vervolgens gedaan door voor de totale lengte van de array de tijd op te halen. Uiteindelijk wordt het gemiddelde uitgerekend en de totale tijd van alle query’s bij elkaar en wordt dit uitgeprint in de console log. Die gegevens hebben we dus in ‘Tabel 1’ toegevoegd.
+In de methode 'testGetAllPlaylists' initialiseren we eerst twee arrays van het type 'long' waarin de totale tijd voor het uitvoeren van de query's wordt opgeslagen. Vervolgens halen we voor elke iteratie de benodigde tijd op en slaan deze op in de respectievelijke arrays. Uiteindelijk berekenen we het gemiddelde en de totale tijd van alle query's en geven deze weer in de consolelog.
 
-| **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Verschil** |
-| --- | --- | --- | --- |
-| getAllPlaylists | 6610ms | 12006ms | 5396ms |
-| getAllTracks | 16828ms | 27886ms | 11058ms |
-| getTracksInPlaylistById | 2917ms | 7722ms | 4805ms |
-| calculateTrackLengthInSeconds | 22198ms | 29486ms | 7288ms |
+In conclusie is MongoDB gemiddeld 55% sneller dan MySQL bij het ophalen van gegevens uit de Spotitube applicatie. Dit betekent dat MongoDB een goede vervanger is voor MySQL in de Spotitube applicatie, aangezien MongoDB sneller is dan MySQL en de Spotitube applicatie hierdoor sneller zal werken.
 
-_Tabel 1: Resultaten testen snelheid_
+Als we deze resultaten vergelijken met Čerešňák en Kvet (2019), is het verschil tussen MongoDB en MySQL aanzienlijk groter. In hun onderzoek duurt een MySQL select query gemiddeld 0.067ms, terwijl een MongoDB find query gemiddeld 0.009ms duurt. In dat onderzoek is MongoDB dus gemiddeld 13,4% sneller dan MySQL, terwijl MongoDB in ons onderzoek gemiddeld 55% sneller is dan MySQL. Dit verschil zou kunnen worden verklaard door het feit dat Čerešňák en Kvet (2019) een veel grotere dataset hebben gebruikt dan wij. Zij hebben een dataset van 100.000 documenten gebruikt, terwijl wij een dataset van 500 documenten hebben gebruikt. 
+
+Hoewel dit een groot verschil is, kan er nog steeds geconcludeerd worden dat MongoDB sneller is dan MySQL bij het ophalen van gegevens met een select- of find-query. Om de deelvraag 'Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL?' te beantwoorden, kunnen we dus concluderen dat MongoDB gemiddeld 55% sneller is dan MySQL bij het ophalen van gegevens uit de Spotitube applicatie.
 
 ## 4 Werkplaatsonderzoek 
 
@@ -518,26 +564,28 @@ Op basis van onze bevindingen raden we aan om over te stappen op een niet-relati
 
 - Baron, C. A. (2016). NoSQL key-value DBs riak and redis. *Database Systems Journal*, *6*(4), 3-10.
 
+- Čerešňák, R., & Kvet, M. (2019). Comparison of query performance in relational a non-relation databases. Transportation research procedia, 40, 170–177. https://doi.org/10.1016/j.trpro.2019.07.027
+
 - Janata, N., Puri, S., Ahuja, M., Kathuria, I., & Gosain, D. (2012). A survey and comparison of relational and non-relational database. *International Journal of Engineering Research & Technology*, *1*(6), 1-5.
 
 - Matei, G., & Bank, R. C. (2010). Column-oriented databases, an alternative for analytical environment. *Database Systems Journal*, *1*(2), 3-16.
 
 - MongoDB. (2023, Januari 1). What Is a Non-Relational Database? Opgeroepen op Maart 31, 2023, van MongoDB.
 
-- MongoDB. (z.d.). $lookup (aggregation) — MongoDB Manual. [Link](https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/)
+- MongoDB. (z.d.). $lookup (aggregation) — MongoDB Manual. https://www.mongodb.com/docs/manual/reference/operator/aggregation/lookup/
 
-- OpenCredo. (2022, 15 juni). Everything you need to know about Cassandra Materialized Views - OpenCredo. [Link](https://opencredo.com/blogs/everything-need-know-cassandra-materialized-views/)
+- OpenCredo. (2022, 15 juni). Everything you need to know about Cassandra Materialized Views - OpenCredo. https://opencredo.com/blogs/everything-need-know-cassandra-materialized-views/
 
-- Redis. (z.d.). *Redis*. [Link](https://redis.io/)
+- Redis. (z.d.). *Redis*. https://redis.io/
 
-- Rithika, S. (2022, 29 december). Understanding MongoDB Joins | 5 Critical Aspects. *Learn | Hevo*. [Link](https://hevodata.com/learn/mongodb-joins/)
+- Rithika, S. (2022, 29 december). Understanding MongoDB Joins | 5 Critical Aspects. *Learn | Hevo*. https://hevodata.com/learn/mongodb-joins/
 
 - Vera, H., Boaventura, W., Holanda, M., Guimaraes, V., & Hondo, F.  (2015, September). Data modeling for NoSQL document-oriented databases. In *CEUR Workshop Proceedings* (Vol. 1478, pp. 129-135).
 
-- Conacher, A. (2022, maart 9). You Want Some Join Context? Neo4j Has You Covered. *Neo4j Graph Data Platform*. [Link](https://neo4j.com/blog/join-context-neo4j/)
+- Conacher, A. (2022, maart 9). You Want Some Join Context? Neo4j Has You Covered. *Neo4j Graph Data Platform*. https://neo4j.com/blog/join-context-neo4j/
 
-- Apache Cassandra | Apache Cassandra Documentation. (z.d.). *Apache Cassandra*. [Link](https://cassandra.apache.org/)
+- Apache Cassandra | Apache Cassandra Documentation. (z.d.). *Apache Cassandra*. https://cassandra.apache.org/
 
-- ICT Research Methods. (2022, Juni 10). *Methods*. Opgeroepen op Maart 31, 2023, van ictresearchmethods: [Link](https://ictresearchmethods.nl/Methods)
+- ICT Research Methods. (2022, Juni 10). *Methods*. Opgeroepen op Maart 31, 2023, van ictresearchmethods: https://ictresearchmethods.nl/Methods
 
-- OnderwijsOnline (z.d.-b). [Link](https://han.onderwijsonline.nl/)
+- OnderwijsOnline (z.d.-b). https://han.onderwijsonline.nl/
