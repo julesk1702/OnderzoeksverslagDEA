@@ -393,6 +393,7 @@ De resultaten van de snelheidstesten zijn samengevat in Tabel 1, Tabel 2 en Tabe
 | getAllTracks                    | 16.828 ms  | 27.886 ms  | MongoDB is **60%** sneller dan MySQL |
 | getTracksInPlaylistById         | 2.917 ms   | 7.722 ms   | MongoDB is **38%** sneller dan MySQL |
 | calculateTrackLengthInSeconds   | 22.198 ms  | 29.486 ms  | MongoDB is **75%** sneller dan MySQL |
+
 _Tabel 1: Resultaten van snelheidstesten_
 
 | **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Procent Sneller** |
@@ -401,6 +402,7 @@ _Tabel 1: Resultaten van snelheidstesten_
 | getAllTracks                    | 15.835 ms  | 29.097 ms  | MongoDB is **54%** sneller dan MySQL |
 | getTracksInPlaylistById         | 3.084 ms   | 8.301 ms   | MongoDB is **37%** sneller dan MySQL |
 | calculateTrackLengthInSeconds   | 24.475 ms  | 34.475 ms  | MongoDB is **70%** sneller dan MySQL |
+
 _Tabel 2: Resultaten van snelheidstesten_
 
 | **Geteste methode** | **Snelheid van MongoDB** | **Snelheid van MySQL** | **Procent Sneller** |
@@ -409,6 +411,7 @@ _Tabel 2: Resultaten van snelheidstesten_
 | getAllTracks                    | 15.210 ms  | 29.598 ms  | MongoDB is **51%** sneller dan MySQL |
 | getTracksInPlaylistById         | 2.667 ms   | 7.811 ms   | MongoDB is **34%** sneller dan MySQL |
 | calculateTrackLengthInSeconds   | 22.084 ms  | 28.896 ms  | MongoDB is **76%** sneller dan MySQL |
+
 _Tabel 3: Resultaten van snelheidstesten_
 
 Uit de resultaten van de snelheidstesten blijkt dat MongoDB in alle gevallen sneller is dan MySQL. De snelheidswinst varieert van 34% tot 76%, met een gemiddelde snelheidswinst van 55%. Dit betekent dat MongoDB gemiddeld 55% sneller is dan MySQL bij het ophalen van gegevens uit de Spotitube applicatie.
@@ -421,6 +424,7 @@ De resultaten van de snelheidstesten zijn samengevat in Tabel 4, waarbij het gem
 | getAllTracks                    | 15.957 ms  | 28.860 ms  | MongoDB is gemiddeld **55%** sneller dan MySQL |
 | getTracksInPlaylistById         | 2.889 ms   | 7.944 ms   | MongoDB is gemiddeld **36%** sneller dan MySQL |
 | calculateTrackLengthInSeconds   | 22.919 ms  | 30.952 ms  | MongoDB is gemiddeld **74%** sneller dan MySQL |
+
 _Table 4: Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL_
 
 Om de testen uit te voeren, vullen we zowel de MySQL-database als de MongoDB-database met dezelfde 500 playlists en 500 tracks. Vervolgens vullen we beide databases met 500 relaties tussen de playlists en tracks; Deze data staat in JSON bestanden, waarvan de MySQL-database en de MongoDB-database allebei gebruik van maken. Voor het testen wordt alle data uit de database verwijderd en wordt de data opnieuw ingevoerd, zodat de data altijd hetzelfde zal zijn voor het uitvoeren van de testen. Om de testen uit te voeren gebruiken we select queries voor MySQL en find queries voor MongoDB, aangezien dit de meest gebruikte queries zijn in de Spotitube applicatie.
@@ -433,6 +437,7 @@ De testen worden uitgevoerd op een lokale machine met de specificaties die in Ta
 | Processor | Intel(R) Core(TM) i7-10870H CPU @ 2.20GHz 2.21 GHz |
 | RAM | 32,0 GB (31,9 GB bruikbaar) |
 | Systeemtype | 64-bits besturingssysteem, x64-gebaseerde processor |
+
 _Tabel 5: Specificaties van de machine waarop de testen zijn uitgevoerd_
 
 Hieronder volgt een codefragment waarin een van de methoden wordt gedemonstreerd die we hebben gebruikt om de snelheid van de verschillende databases te testen:
