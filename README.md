@@ -493,12 +493,8 @@ Aangezien dit nu wordt opgeslagen in de track zelf, kan dit veel sneller opgehaa
 We zijn ongeveer 3 uur bezig geweest met het omzetten van de MySQL database naar de MongoDB database; een hele korte tijd, dus. MongoDB kon extreem makkelijk geïmplementeerd te worden en we hadden minder problemen dan bij het implementeren van MySQL. MongoDB is dus, naar onze mening, een betere database om te gebruiken voor de Spotitube applicatie. 
 
 ## 5 Discussie
-**TODO**
 
-
-## 6 Conclusie
-
-Na uitgebreid onderzoek naar de voor- en nadelen van het vervangen van de relationele database MySQL door de niet-relationele database MongoDB voor de SpotiTube-applicatie, kunnen we concluderen dat het gebruik van MongoDB aanzienlijke voordelen biedt en een geschikt alternatief zou zijn voor MySQL.
+Tijdens het beantwoorden van de onderzoeksvragen kwamen wij er achter dat onze hoofdvraag iets te breed was voor dit onderzoek. Na uitgebreid onderzoek naar de voor- en nadelen van het vervangen van de relationele database MySQL door de niet-relationele database MongoDB voor de SpotiTube-applicatie, kunnen we concluderen dat het gebruik van MongoDB aanzienlijke voordelen biedt en een geschikt alternatief zou zijn voor MySQL. Hierop besloten wij onze hoofdvraag aan te passen en het onderzoek te richten op de niet relationele MongoDB i.p.v. alle andere niet relationele databases.
 
 Een van de belangrijkste voordelen die uit ons onderzoek naar voren kwam, is dat MongoDB aanzienlijk sneller presteert dan MySQL. Deze verbeterde snelheid is vooral merkbaar bij het ophalen van grote hoeveelheden data uit de database. Door de snelle respons van MongoDB kan de gebruiker van SpotiTube optimaal gebruik maken van de applicatie, zonder dat de prestaties merkbaar lijden onder het verwerken van omvangrijke datasets.
 
@@ -506,7 +502,9 @@ Daarnaast biedt MongoDB aanzienlijke schaalbaarheids- en flexibiliteitsvoordelen
 
 Hoewel er enkele nadelen zijn verbonden aan het gebruik van MongoDB, zoals het potentieel bevatten van minder accurate data in vergelijking met MySQL, zijn wij van mening dat de voordelen zwaarder wegen dan deze mogelijke nadelen. De behoeften van de SpotiTube-applicatie, zoals het efficiënt opslaan van grote datasets en het probleemloos ophalen van gegevens uit de database, worden goed vervuld door MongoDB.
 
-Op basis van onze bevindingen raden we aan om over te stappen op een niet-relationele database zoals MongoDB voor de SpotiTube-applicatie. De voordelen op het gebied van prestaties, schaalbaarheid en flexibiliteit wegen zwaarder dan de mogelijke nadelen. Hierdoor kan SpotiTube profiteren van verbeterde functionaliteit en efficiëntie in gegevensverwerking, wat uiteindelijk een positieve impact zal hebben op de gebruikerservaring.
+## 6 Conclusie
+
+Terugkomend op wat we besproken hebben in de discussie raden we aan, op basis van onze bevindingen, om over te stappen op een niet-relationele database zoals, in het geval van dit onderzoek, MongoDB voor de SpotiTube-applicatie. De voordelen op het gebied van prestaties, schaalbaarheid en flexibiliteit wegen zwaarder dan de mogelijke nadelen. Hierdoor kan SpotiTube profiteren van verbeterde functionaliteit en efficiëntie in gegevensverwerking, wat uiteindelijk zou kunnen leiden tot een positieve impact op de gebruikerservaring.
 
 ## 7 Bronnen
 
