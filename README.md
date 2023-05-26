@@ -89,7 +89,7 @@ Wij maken binnen dit onderzoek gebruik van de volgende onderzoeksmethoden:
 
 Voor de methode Library gebruiken we ‘Literature Study’ en ‘SWOT analysis’, voor de methode Lab gebruiken we ‘Non-functional test’ en als laatste voor de methode Workshop gebruiken wij ‘Requirement Prioritization’.
 
-Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘Literature Study’. Deelvraag 2 beantwoorden we door gebruik te maken van ‘SWOT analysis’, deelvraag 3 gaan we beantwoorden door de methode ‘Requirement Prioritization’ toe te passen en als laatste wordt deelvraag 4 beantwoordt door gebruik te maken van ‘Non-functional test’. (Methods - ICT research methods, z.d.)
+Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘Literature Study en SWOT Analysis’. Deelvraag 2 beantwoorden we door gebruik te maken van ‘Literature Study’, deelvraag 3 gaan we beantwoorden door de methode ‘Requirement Prioritization’ toe te passen en als laatste wordt deelvraag 4 beantwoordt door gebruik te maken van ‘Non-functional test’. (Methods - ICT research methods, z.d.)
 
 
 ## 2 Theoretisch Kader en Literatuuronderzoek
