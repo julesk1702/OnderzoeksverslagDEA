@@ -27,18 +27,18 @@ Niettemin lijken de voordelen van MongoDB te voldoen aan de behoeften van de Spo
    4. [Onderzoeksmethoden](#14-onderzoeksmethoden)
 
 2. [Theoretisch Kader en Literatuuronderzoek](#2-theoretisch-kader-en-literatuuronderzoek)
-   1. [Verschillende Soorten Niet-Relationele Databases](#21-verschillende-soorten-niet-relationele-databases)
+   1. [Wat zijn de belangrijkste verschillen tussen de verschillende en populairste soorten niet-relationele databases en welke is het meest geschikt voor de specifieke behoeften en vereisten van de applicatie?](#21-wat-zijn-de-belangrijkste-verschillen-tussen-de-verschillende-en-populairste-soorten-niet-relationele-databases-en-welke-is-het-meest-geschikt-voor-de-specifieke-behoeften-en-vereisten-van-de-applicatie)
       1. [Documentgeoriënteerde Databases](#211-documentgeoriënteerde-databases)
       2. [Key-value Databases](#212-key-value-databases)
       3. [Kolomgeoriënteerde Databases](#213-kolomgeoriënteerde-databases)
       4. [Graph Databases](#214-graph-databases)
+      5. [Conclusie](#215-conclusie)
 
-   2. [Join-Operaties in Niet-Relationele Databases](#22-join-operaties-in-niet-relationele-databases)
+   2. [Hoe kan men vergelijkbare resultaten behalen in een niet-relationele database, zoals die verkregen worden via een join-operatie in een relationele database?](#22-hoe-kan-men-vergelijkbare-resultaten-behalen-in-een-niet-relationele-database-zoals-die-verkregen-worden-via-een-join-operatie-in-een-relationele-database)
        	1. [Join-Operaties in MongoDB](#221-join-operaties-in-mongodb)
        	2. [Join-Operaties in Redis](#222-join-operaties-in-redis)
        	3. [Join-Operaties in Apache Cassandra](#223-join-operaties-in-apache-cassandra)
        	4. [Join-Operaties in Neo4j](#224-join-operaties-in-neo4j)
-   3. [Conclusie](#23-conclusie)
 3. [Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL?](#3-wat-is-het-verschil-in-snelheid-tussen-het-ophalen-van-gegevens-uit-mongodb-vergeleken-met-mysql)
 4. [Werkplaatsonderzoek](#4-werkplaatsonderzoek)
 5. [Discussie](#5-discussie)
@@ -76,7 +76,7 @@ Om tot een conclusie te komen op de hoofdvraag hebben we een viertal deelvragen 
 
 1.	Wat zijn de belangrijkste verschillen tussen de verschillende en populairste soorten niet-relationele databases en welke is het meest geschikt voor de specifieke behoeften en vereisten van de applicatie?
 
-2.	Hoe kan men vergelijkbare resultaten behalen in een NoSQL-database, zoals die verkregen worden via een join-operatie in een SQL-database? 
+2.	Hoe kan men vergelijkbare resultaten behalen in een niet-relationele database, zoals die verkregen worden via een join-operatie in een relationele database? 
 
 3. Welke criteria moeten worden vervuld om een niet-relationele database te kunnen inzetten ter vervanging van een relationele database in een applicatie?
 
@@ -94,7 +94,7 @@ Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘L
 
 ## 2 Theoretisch Kader en Literatuuronderzoek
 
-### 2.1 Verschillende Soorten Niet-Relationele Databases
+### 2.1 Wat zijn de belangrijkste verschillen tussen de verschillende en populairste soorten niet-relationele databases en welke is het meest geschikt voor de specifieke behoeften en vereisten van de applicatie?
 
 Niet-relationele databases zijn een type databasebeheersysteem dat is ontworpen om grote hoeveelheden ongestructureerde data te verwerken. In tegenstelling tot traditionele relationele databases hebben niet-relationele databases geen vast schema of tabelstructuur nodig, wat ze zeer schaalbaar en flexibel maakt (Janata et al., 2012).
 
@@ -142,7 +142,33 @@ Een nadeel van graph-databases is dat ze minder efficiënt kunnen zijn bij het u
 
 In conclusie is een graph-database een krachtige tool voor het opslaan en beheren van complexe gegevensrelaties. Het biedt voordelen zoals schaalbaarheid en intuïtieve visualisatie van gegevens. Maar, het kan minder efficiënt zijn bij het uitvoeren van eenvoudige query's en het verwerken van grote hoeveelheden gegevens in vergelijking met traditionele relationele databases. Daarom is het belangrijk om de toepassingsvereisten te evalueren om te bepalen of een graph-database de juiste keuze is voor een specifiek project.
 
-### 2.2 Join-Operaties in Niet-Relationele Databases
+#### 2.1.5 Conclusie
+
+Er zijn dus verschillende type niet-relationele databases; elk type gaat op een verschillende manier met data om. Maar, welke niet-relationele database type is de beste oplossing voor de Spotitube applicatie?
+Om de deelvraag 'Wat zijn de belangrijkste verschillen tussen de verschillende en populairste soorten niet-relationele databases en welke is het meest geschikt voor de specifieke behoeften en vereisten van de applicatie?' te beantwoorden, is het belangrijk om te kijken naar de voor- en nadelen van de verschillende niet-relationele database types.
+
+Een samenvatting van de voor- en nadelen van de verschillende niet-relationele database types:
+
+- Documentgeoriënteerde databases:
+  - Voordelen: veranderingen in gegevensstructuren zijn makkelijker aan te passen en grote datasets ophalen gaat vlotter
+  - Nadelen: minder geschikt voor complexe queries
+- Key-value databases:
+  - Voordelen: gebruiksgemak, snelheid en schaalbaarheid.
+  - Nadelen: minder geschikt voor complexe queries en zoekopdrachten die niet gebaseerd zijn op specifieke keys.
+- Kolomgeoriënteerde databases:
+  - Voordelen: efficiënt bij het omgaan met grote hoeveelheden gegevens en het uitvoeren van analytische queries.
+  - Nadelen: minder geschikt voor transacties en het uitvoeren van operaties op individuele records.
+- Graph databases:
+  - Voordelen: geschikt voor het opslaan van complexe relaties en het uitvoeren van complexe queries.
+  - Nadelen: minder geschikt voor transacties en minder efficiënt bij het opslaan van grote hoeveelheden data.
+
+De Spotitube applicatie heeft behoefte aan een schaalbare database die in staat is om grote hoeveelheden data tegelijk op te halen. Belangrijk is dat de database flexibel is, zodat het gemakkelijk is om nieuwe velden toe te voegen aan de opgeslagen tracks zonder dat er veel nullable velden worden gecreëerd. Door te kiezen voor een dergelijke database kan de Spotitube applicatie snel en efficiënt werken met grote hoeveelheden data en tegelijkertijd gemakkelijk worden uitgebreid en onderhouden.
+
+Hoewel alle niet-relationele database types hun eigen voordelen hebben, lijkt de documentgeoriënteerde database het meest geschikt voor deze specifieke toepassing. De populairste documentgeoriënteerde is MongoDB; deze is gratis en open-source, wat het een goede optie maakt voor onze applicatie.
+
+Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie bevatten die is gerelateerd aan elkaar in één document, wat de efficiëntie en snelheid van het ophalen van grote datasets kan verbeteren. Bovendien is MongoDB flexibel en schaalbaar, waardoor het gemakkelijk kan worden aangepast aan veranderingen in gegevensstructuren en kan meegroeien met de groei van de applicatie. Daarnaast kunnen er gemakkelijk relaties tussen documenten worden gelegd door middel van MongoDB's  lookup-functionaliteit. Deze functionaliteit maakt het mogelijk om gegevens uit meerdere collecties samen te voegen en te combineren op basis van een gemeenschappelijk veld, vergelijkbaar met het uitvoeren van een join in een relationele database.
+
+### 2.2 Hoe kan men vergelijkbare resultaten behalen in een niet-relationele database, zoals die verkregen worden via een join-operatie in een relationele database?
 
 SQL join-operaties zijn een fundamenteel aspect van SQL waarmee gegevens uit twee of meer tabellen kunnen worden gecombineerd op basis van een gespecificeerde join-voorwaarde. De join-voorwaarde bepaalt hoe de tabellen gerelateerd zijn en welke rijen uit elke tabel worden geselecteerd (Aho et al., 1979).
 
@@ -353,33 +379,6 @@ Allereerst moeten we het hebben over de schaalbaarheid. "Niet relationele databa
 De volgende criteria is flexibiliteit. Een niet relationele database slaat de gegevens in een niet in een tabel vorm op maar is meer te vergelijken met een soort documenten structuur. ‘Een document kan zeer gedetailleerd zijn en tegelijkertijd een reeks verschillende soorten informatie in verschillende formaten bevatten’ (MongoDB, 2023). Dit kan handig zijn als de applicatie bijvoorbeeld te maken krijgt met ongestructureerde data of wanneer het datamodel in de loop der tijd kan veranderen.
 
 Het laatste criteria is de performance. Doordat een relationele database veel tabellen kan hebben waar op hun plaats weer veel gegevens in zit steeds blijft groeien. Wordt de tijd die nodig is om de queries goed uit te voeren ook steeds groter. Dit probleem heb je niet bij het gebruik van een niet relationele database. Dit komt omdat een niet relationele database de gegevens als het ware naast elkaar opslaat. Hierdoor ondervind je dus niet tot nauwelijks verminderingen van performances naarmate de hoeveelheid gegevens groeit.
-
-### 2.4 Conclusie
-
-Er zijn dus verschillende type niet-relationele databases; elk type gaat op een verschillende manier met data om. Maar, welke niet-relationele database type is de beste oplossing voor de Spotitube applicatie?
-
-Een samenvatting van de voor- en nadelen van de verschillende niet-relationele database types:
-
-- Documentgeoriënteerde databases:
-  - Voordelen: veranderingen in gegevensstructuren zijn makkelijker aan te passen en grote datasets ophalen gaat vlotter
-  - Nadelen: minder geschikt voor complexe queries
-- Key-value databases:
-  - Voordelen: gebruiksgemak, snelheid en schaalbaarheid.
-  - Nadelen: minder geschikt voor complexe queries en zoekopdrachten die niet gebaseerd zijn op specifieke keys.
-- Kolomgeoriënteerde databases:
-  - Voordelen: efficiënt bij het omgaan met grote hoeveelheden gegevens en het uitvoeren van analytische queries.
-  - Nadelen: minder geschikt voor transacties en het uitvoeren van operaties op individuele records.
-- Graph databases:
-  - Voordelen: geschikt voor het opslaan van complexe relaties en het uitvoeren van complexe queries.
-  - Nadelen: minder geschikt voor transacties en minder efficiënt bij het opslaan van grote hoeveelheden data.
-
-De Spotitube applicatie heeft behoefte aan een schaalbare database die in staat is om grote hoeveelheden data tegelijk op te halen. Belangrijk is dat de database flexibel is, zodat het gemakkelijk is om nieuwe velden toe te voegen aan de opgeslagen tracks zonder dat er veel nullable velden worden gecreëerd. Door te kiezen voor een dergelijke database kan de Spotitube applicatie snel en efficiënt werken met grote hoeveelheden data en tegelijkertijd gemakkelijk worden uitgebreid en onderhouden.
-
-Hoewel alle niet-relationele database types hun eigen voordelen hebben, lijkt de documentgeoriënteerde database het meest geschikt voor deze specifieke toepassing. De populairste documentgeoriënteerde is MongoDB; deze is gratis en open-source, wat het een goede optie maakt voor onze applicatie.
-
-Het voordeel van MongoDB is dat het gebruik maakt van documenten die informatie bevatten die is gerelateerd aan elkaar in één document, wat de efficiëntie en snelheid van het ophalen van grote datasets kan verbeteren. Bovendien is MongoDB flexibel en schaalbaar, waardoor het gemakkelijk kan worden aangepast aan veranderingen in gegevensstructuren en kan meegroeien met de groei van de applicatie. Daarnaast kunnen er gemakkelijk relaties tussen documenten worden gelegd door middel van MongoDB's  lookup-functionaliteit. Deze functionaliteit maakt het mogelijk om gegevens uit meerdere collecties samen te voegen en te combineren op basis van een gemeenschappelijk veld, vergelijkbaar met het uitvoeren van een join in een relationele database.
-
-Concluderend gaan we onderzoeken of MongoDB, als niet-relationele database, de Spotitube applicatie net zo goed of beter kan laten  functioneren dan de huidige relationele database.
 
 ## 3 Wat is het verschil in snelheid tussen het ophalen van gegevens uit MongoDB vergeleken met MySQL?
 
