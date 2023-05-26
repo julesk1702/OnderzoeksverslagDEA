@@ -138,7 +138,7 @@ public class Benchmarks {
         System.out.println("MySQL total duration: " + mongoDbTotalResults + "ms");
         System.out.println("MongoDB total duration: " + mySqlTotalResults + "ms");
         System.out.println("\n");
-        System.out.println(percentage + "faster");
+        System.out.println(percentage + " faster");
         System.out.println("---------------------------------------------------------");
     }
 
