@@ -416,7 +416,7 @@ _Tabel 3: Resultaten van snelheidstesten_
 
 Uit de resultaten van de snelheidstesten blijkt dat MongoDB in alle gevallen sneller is dan MySQL. De snelheidswinst varieert van 34% tot 76%, met een gemiddelde snelheidswinst van 55%. Dit betekent dat MongoDB gemiddeld 55% sneller is dan MySQL bij het ophalen van gegevens uit de Spotitube applicatie.
 
-De resultaten van de snelheidstesten zijn samengevat in Tabel 4, waarbij het gemiddelde percentage sneller van MongoDB ten opzichte van MySQL is berekend.
+De resultaten van de snelheidstesten zijn samengevat in Tabel 4, waarbij het gemiddelde percentage sneller van MongoDB ten opzichte van MySQL is berekend. Dit is visueel weergegeven in Figuur 1.
 
 | **Geteste methode** | **Gemiddelde snelheid MongoDB** | **Gemiddelde snelheid MySQL** | **Gemiddeld percentage sneller** |
 | --- | --- | --- | --- |
@@ -425,7 +425,10 @@ De resultaten van de snelheidstesten zijn samengevat in Tabel 4, waarbij het gem
 | getTracksInPlaylistById         | 2.889 ms   | 7.944 ms   | MongoDB is gemiddeld **36%** sneller dan MySQL |
 | calculateTrackLengthInSeconds   | 22.919 ms  | 30.952 ms  | MongoDB is gemiddeld **74%** sneller dan MySQL |
 
-_Table 4: Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL_
+_Tabel 4: Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL_
+
+[![Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL](./images/speed_mongodb_vs_mysql.png)](./images/speed_mongodb_vs_mysql.png)
+_Figuur 1: Gemiddelde snelheidswinst van MongoDB ten opzichte van MySQL grafiek_
 
 Om de testen uit te voeren, vullen we zowel de MySQL-database als de MongoDB-database met dezelfde 500 playlists en 500 tracks. Vervolgens vullen we beide databases met 500 relaties tussen de playlists en tracks; Deze data staat in JSON bestanden, waarvan de MySQL-database en de MongoDB-database allebei gebruik van maken. Voor het testen wordt alle data uit de database verwijderd en wordt de data opnieuw ingevoerd, zodat de data altijd hetzelfde zal zijn voor het uitvoeren van de testen. Om de testen uit te voeren gebruiken we select queries voor MySQL en find queries voor MongoDB, aangezien dit de meest gebruikte queries zijn in de Spotitube applicatie.
 
