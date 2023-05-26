@@ -66,7 +66,7 @@ Onze hoofdvraag voor dit onderzoeksverslag luidt alsvolgt: “Wat zijn de voor- 
 
 Om deze vraag te beantwoorden zullen we de verschillen tussen relationele en niet-relationele databases onderzoeken, inclusief hun structuur en functionaliteit. We zullen ook onderzoeken welke soorten gegevens het meest geschikt zijn voor elk type database en de schaalbaarheid en prestaties van beide.
 
-Om tot een uitgebreid beeld te komen, zullen we dus gebruik maken van verschillende onderzoeksmethoden. De methodes die wij zullen gebruiken binnen dit onderzoek zijn: Literature Study, SWOT Analysis, Usability Testing en Requirement Prioritization. Ook zullen we dit doen aanhand van een aantal deelvragen die we hebben opgesteld. 
+Om tot een uitgebreid beeld te komen, zullen we dus gebruik maken van verschillende onderzoeksmethoden. De methodes die wij zullen gebruiken binnen dit onderzoek zijn: Literature Study, SWOT Analysis, Usability Testing en Requirement Prioritization (Methods - ICT research methods, z.d.). Ook zullen we dit doen aanhand van een aantal deelvragen die we hebben opgesteld. 
 
 Aan het eind van dit onderzoek hopen wij te beschikken over een nauwkeurig beeld van de voor- en nadelen van de vervanging van een relationele database door een niet-relationele database en hoe dit betrekking zal hebben op de SpotiTube applicatie. 
 
@@ -89,7 +89,7 @@ Wij maken binnen dit onderzoek gebruik van de volgende onderzoeksmethoden:
 
 Voor de methode Library gebruiken we ‘Literature Study’ en ‘SWOT analysis’, voor de methode Lab gebruiken we ‘Non-functional test’ en als laatste voor de methode Workshop gebruiken wij ‘Requirement Prioritization’.
 
-Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘Literature Study’. Deelvraag 2 beantwoorden we door gebruik te maken van ‘SWOT analysis’, deelvraag 3 gaan we beantwoorden door de methode ‘Requirement Prioritization’ toe te passen en als laatste wordt deelvraag 4 beantwoordt door gebruik te maken van ‘Non-functional test’.
+Deelvraag 1 wordt beantwoord door gebruik te maken van de onderzoeksmethode ‘Literature Study’. Deelvraag 2 beantwoorden we door gebruik te maken van ‘SWOT analysis’, deelvraag 3 gaan we beantwoorden door de methode ‘Requirement Prioritization’ toe te passen en als laatste wordt deelvraag 4 beantwoordt door gebruik te maken van ‘Non-functional test’. (Methods - ICT research methods, z.d.)
 
 
 ## 2 Theoretisch Kader en Literatuuronderzoek
